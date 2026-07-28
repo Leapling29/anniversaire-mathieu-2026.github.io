@@ -1,0 +1,488 @@
+:root {
+  color-scheme: dark;
+  --bg: #07110f;
+  --surface: #0f1d19;
+  --surface-2: #152821;
+  --border: rgba(220, 255, 238, 0.15);
+  --text: #f5fff9;
+  --muted: #a5bbb0;
+  --accent: #8ef0b4;
+  --accent-strong: #45d883;
+  --danger: #ff8e8e;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(69, 216, 131, 0.15), transparent 28rem),
+    radial-gradient(circle at 85% 80%, rgba(85, 166, 255, 0.10), transparent 32rem),
+    linear-gradient(145deg, #06100d, #0b1713 55%, #07110f);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.site-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 96px;
+}
+
+.view {
+  min-height: calc(100vh - 168px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.countdown-view {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 860px;
+  margin-bottom: 18px;
+  font-size: clamp(2.25rem, 7vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: -0.025em;
+}
+
+.intro,
+.enigma-header p,
+.section-heading p {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.65;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(135px, 1fr));
+  gap: 16px;
+  width: min(860px, 100%);
+  margin-top: 42px;
+}
+
+.time-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 14px 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(15, 29, 25, 0.74);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.time-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.time-value {
+  display: block;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.time-label {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.target-date {
+  margin: 24px 0 0;
+  color: var(--muted);
+}
+
+.enigma-header {
+  margin-bottom: 34px;
+}
+
+.enigma-header h1 {
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+}
+
+.coordinates-panel {
+  padding: clamp(20px, 4vw, 34px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: rgba(15, 29, 25, 0.78);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.coordinates-heading,
+.section-heading,
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.coordinate-row {
+  display: grid;
+  grid-template-columns: 58px repeat(3, 1fr);
+  gap: 14px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.hemisphere {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  border-radius: 18px;
+  color: var(--bg);
+  background: var(--accent);
+  font-size: 1.65rem;
+  font-weight: 900;
+}
+
+.coordinate-part {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  gap: 7px 8px;
+  min-width: 0;
+  padding: 22px 18px 15px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-2);
+}
+
+.part-number {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  color: var(--bg);
+  background: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.coordinate-part input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  font-size: clamp(1.6rem, 5vw, 2.7rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.coordinate-part input:focus {
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.symbol {
+  align-self: center;
+  color: var(--accent);
+  font-size: 1.8rem;
+}
+
+.part-name {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.coordinate-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.coordinate-preview strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.enigmas-section {
+  margin-top: 52px;
+}
+
+.enigma-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.enigma-card {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(15, 29, 25, 0.70);
+}
+
+.enigma-number {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--bg);
+  background: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.enigma-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+.enigma-content p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.enigma-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.settings-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(15, 29, 25, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.settings-panel {
+  position: fixed;
+  right: 18px;
+  bottom: 72px;
+  z-index: 30;
+  width: min(390px, calc(100% - 36px));
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: #10201a;
+  box-shadow: var(--shadow);
+}
+
+.settings-header h2 {
+  margin-bottom: 0;
+}
+
+.icon-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  background: transparent;
+  font-size: 1.5rem;
+}
+
+.field-label {
+  display: block;
+  margin: 22px 0 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.date-input-wrapper {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.date-input-wrapper input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  color-scheme: dark;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.primary-button {
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  color: var(--bg);
+  background: var(--accent);
+}
+
+.secondary-button {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.settings-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+code {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .site-shell {
+    padding-top: 46px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .coordinate-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hemisphere {
+    min-height: 52px;
+  }
+
+  .coordinate-part {
+    min-height: 104px;
+  }
+
+  .coordinates-heading,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-shell {
+    width: min(100% - 20px, 1120px);
+  }
+
+  .countdown-grid {
+    gap: 10px;
+  }
+
+  .time-card {
+    padding-inline: 8px;
+  }
+
+  .enigma-card {
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .enigma-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+  }
+}
+
+

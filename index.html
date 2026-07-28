@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Countdown and multi-step GPS coordinate enigma" />
+  <title>GPS Enigma Countdown</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="site-shell">
+    <section id="countdown-view" class="view countdown-view" aria-labelledby="countdown-title">
+      <div class="eyebrow">The adventure begins in</div>
+      <h1 id="countdown-title">A mystery is waiting for you</h1>
+      <div class="countdown-grid" aria-live="polite" aria-label="Countdown">
+        <article class="time-card">
+          <span id="days" class="time-value">00</span>
+          <span class="time-label">Days</span>
+        </article>
+        <article class="time-card">
+          <span id="hours" class="time-value">00</span>
+          <span class="time-label">Hours</span>
+        </article>
+        <article class="time-card">
+          <span id="minutes" class="time-value">00</span>
+          <span class="time-label">Minutes</span>
+        </article>
+        <article class="time-card">
+          <span id="seconds" class="time-value">00</span>
+          <span class="time-label">Seconds</span>
+        </article>
+      </div>
+
+    </section>
+
+    <section id="enigma-view" class="view enigma-view hidden" aria-labelledby="enigma-title">
+      <header class="enigma-header">
+        <div class="eyebrow">Destination unlocked</div>
+        <h1 id="enigma-title">Decrypt the GPS coordinates</h1>
+        <p>
+          Solve each numbered enigma. Enter each answer in the coordinate box with the same number.
+        </p>
+        <button id="open-maps" class="primary-button maps-button hidden" type="button">Open in Google Maps</button>
+        <p id="validation-message" class="validation-message" aria-live="polite"></p>
+      </header>
+
+      <section class="coordinates-panel" aria-labelledby="coordinates-title">
+        <div class="coordinates-heading">
+          <h2 id="coordinates-title">GPS coordinates</h2>
+          <button id="clear-answers" class="secondary-button" type="button">
+            Clear answers
+          </button>
+        </div>
+
+        <div class="coordinate-row">
+          <span id="latitude-hemisphere-label" class="hemisphere">N</span>
+
+          <label class="coordinate-part">
+            <span class="part-number">1</span>
+            <input id="answer-1" inputmode="decimal" aria-label="Latitude degrees, answer 1" />
+            <span class="symbol">°</span>
+            <span class="part-name">Degrees</span>
+          </label>
+
+          <label class="coordinate-part">
+            <span class="part-number">2</span>
+            <input id="answer-2" inputmode="decimal" aria-label="Latitude minutes, answer 2" />
+            <span class="symbol">′</span>
+            <span class="part-name">Minutes</span>
+          </label>
+
+          <label class="coordinate-part">
+            <span class="part-number">3</span>
+            <input id="answer-3" inputmode="decimal" aria-label="Latitude seconds, answer 3" />
+            <span class="symbol">″</span>
+            <span class="part-name">Seconds</span>
+          </label>
+        </div>
+
+        <div class="coordinate-row">
+          <span id="longitude-hemisphere-label" class="hemisphere">E</span>
+
+          <label class="coordinate-part">
+            <span class="part-number">4</span>
+            <input id="answer-4" inputmode="decimal" aria-label="Longitude degrees, answer 4" />
+            <span class="symbol">°</span>
+            <span class="part-name">Degrees</span>
+          </label>
+
+          <label class="coordinate-part">
+            <span class="part-number">5</span>
+            <input id="answer-5" inputmode="decimal" aria-label="Longitude minutes, answer 5" />
+            <span class="symbol">′</span>
+            <span class="part-name">Minutes</span>
+          </label>
+
+          <label class="coordinate-part">
+            <span class="part-number">6</span>
+            <input id="answer-6" inputmode="decimal" aria-label="Longitude seconds, answer 6" />
+            <span class="symbol">″</span>
+            <span class="part-name">Seconds</span>
+          </label>
+        </div>
+
+        <div class="coordinate-preview">
+          <span>Coordinate preview</span>
+          <strong id="coordinate-preview-value">N __° __′ __″ · E __° __′ __″</strong>
+        </div>
+      </section>
+
+      <section class="enigmas-section" aria-labelledby="enigmas-heading">
+        <div class="section-heading">
+          <h2 id="enigmas-heading">The six enigmas</h2>
+          <p>Each result fills the matching numbered coordinate field above.</p>
+        </div>
+
+        <div id="enigma-list" class="enigma-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <button id="settings-toggle" class="settings-toggle" type="button" aria-expanded="false">
+    ⚙ Setup
+  </button>
+
+  <aside id="settings-panel" class="settings-panel hidden" aria-labelledby="settings-title">
+    <div class="settings-header">
+      <h2 id="settings-title">Website setup</h2>
+      <button id="settings-close" class="icon-button" type="button" aria-label="Close settings">×</button>
+    </div>
+
+    <label class="field-label" for="release-date">Countdown end date and time</label>
+    <div class="date-input-wrapper">
+      <input id="release-date" type="datetime-local" />
+    </div>
+
+    <button id="save-date" class="primary-button" type="button">Save countdown date</button>
+    <button id="preview-enigmas" class="secondary-button full-width" type="button">
+      Preview enigma page
+    </button>
+    <button id="preview-countdown" class="secondary-button full-width" type="button">
+      Return to countdown
+    </button>
+
+    <p class="settings-note">
+      The chosen date and entered answers are stored in this browser. For a fixed public
+      launch date, edit <code>DEFAULT_RELEASE_DATE</code> in <code>script.js</code>.
+    </p>
+  
+        <div class="setup-field-row">
+          <label class="setup-field">
+            <span>Latitude hemisphere</span>
+            <select id="latitude-hemisphere-select">
+              <option value="N">North (N)</option>
+              <option value="S">South (S)</option>
+            </select>
+          </label>
+
+          <label class="setup-field">
+            <span>Longitude hemisphere</span>
+            <select id="longitude-hemisphere-select">
+              <option value="E">East (E)</option>
+              <option value="W">West (W)</option>
+            </select>
+          </label>
+        </div>
+
+        </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
