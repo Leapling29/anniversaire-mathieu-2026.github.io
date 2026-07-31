@@ -486,3 +486,58 @@ code {
 }
 
 
+
+/* Progressive single-page timeline */
+.hero { margin-bottom: 28px; }
+.next-release-label { margin: 18px 0 0; color: var(--muted); }
+.coordinates-help { color: var(--muted); margin: -4px 0 22px; }
+.enigmas-section { margin-top: 28px; }
+.enigma-card.locked { opacity: .68; border-style: dashed; }
+.enigma-card.locked .enigma-number { filter: grayscale(1); }
+.enigma-card.revealed { opacity: 1; }
+.status-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--muted); font-size: .85rem; }
+.status-badge { display: inline-flex; padding: 5px 9px; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--text); font-weight: 700; }
+.revealed .status-badge { background: rgba(73, 216, 144, .14); color: #8ef0b4; }
+.setup-subtitle { margin: 22px 0 12px; }
+.reveal-date-settings { display: grid; gap: 12px; }
+@media (max-width: 700px) {
+  .site-shell { padding-top: 28px; }
+  .coordinates-heading { align-items: flex-start; }
+  .coordinate-row { grid-template-columns: 34px repeat(3, minmax(0, 1fr)); gap: 7px; }
+  .coordinate-part { padding: 10px 4px; }
+  .part-name { font-size: .68rem; }
+  .time-card { padding: 16px 7px; }
+  .time-value { font-size: clamp(1.7rem, 10vw, 2.8rem); }
+}
+
+
+/* Coordinate lock and validation states */
+.coordinate-part.is-locked {
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.coordinate-part.is-locked input {
+  cursor: not-allowed;
+  color: var(--muted);
+}
+
+.coordinate-part.is-correct {
+  border-color: #55d98a;
+  box-shadow: 0 0 0 2px rgba(85, 217, 138, 0.18);
+}
+
+.coordinate-part.is-incorrect {
+  border-color: #ff7474;
+  box-shadow: 0 0 0 2px rgba(255, 116, 116, 0.16);
+}
+
+.coordinate-part.is-correct .part-number {
+  background: #55d98a;
+  color: #07110f;
+}
+
+.coordinate-part.is-incorrect .part-number {
+  background: #ff7474;
+  color: #07110f;
+}
