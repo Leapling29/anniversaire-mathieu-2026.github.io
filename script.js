@@ -28,7 +28,7 @@ const CORRECT_ANSWERS = [
 // ];
 
 const DEFAULT_ENIGMAS = [
-  { number: 1, target: "Latitude degrees", revealDate: "2026-09-25T19:00:00+02:00", title: "Enigma 1: Anniversaire", text: "Le 10 mars 2010, quel age avions nous tous ici ?" },
+  { number: 1, target: "Latitude degrees", revealDate: "2026-09-25T19:00:01+02:00", title: "Enigma 1: Anniversaire", text: "Le 10 mars 2010, quel age avions nous tous ici ?" },
   { number: 2, target: "Latitude minutes", revealDate: "2026-08-24T23:00:00+02:00", title: "Enigma 2: Marseille", text: "Pastis + 2" },
   { number: 3, target: "Latitude seconds", revealDate: "2026-08-01T17:00:00+02:00", title: "Enigma 3: Le programmeur", text: "0101 0001 0101 0000" },
   { number: 4, target: "Longitude degrees", revealDate: "2026-09-17T16:00:00+02:00", title: "Enigma 4: Fractions", text: "Le denominateur impossible" },
